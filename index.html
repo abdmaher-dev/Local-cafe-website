@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en"  class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Café Langereis</title>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+      .fade { opacity: 1; transition: opacity 1s ease-in-out; }
+      .fade-out { opacity: 0; transition: opacity 1s ease-in-out; }
+      .grey-bg{background-color: #888; border-radius: 12px;}
+      
+.testimonials-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #111;
+}
+
+.testimonials-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.testimonial-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e59b46;
+  margin-bottom: 15px;
+}
+
+.testimonial-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 10px 0 5px;
+  color: #4f46e5;
+}
+
+.testimonial-comment {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Fade-in animation for testimonials */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.testimonial-card {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-900 scroll-smooth">
+    <!-- Welcome Screen -->
+    <div id="welcome" class="fixed inset-0 flex flex-col items-center justify-center bg-black/90 text-center px-4 z-50">
+      <h2 class="text-white text-4xl md:text-7xl font-bold">Café Langereis</h2>
+      <div class="w-2/3 md:w-1/2 h-px bg-white my-6 md:my-12"></div>
+      <h3 class="text-white text-2xl md:text-5xl">in Amsterdam</h3>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full h-[40px] md:h-12 bg-white shadow-md flex items-center justify-between px-6 md:px-12 z-40">
+  <!-- Logo -->
+  <a href="#" class="flex items-center gap-2 font-bold text-base md:text-lg text-gray-700">
+    Café Langereis
+  </a>
+
+  <!-- Desktop Links -->
+   <ul class="hidden md:flex gap-6 text-gray-700 font-semibold">
+    <li><a href="#aboutus" id="aboutBtn" class="nav-link transition hover:text-orange-500">About Us</a></li>
+    <li><a href="#contactus" id="contactBtn" class="nav-link transition hover:text-orange-500">Contact Us</a></li>
+    <li><a href="#opentimes" class="nav-link transition hover:text-orange-500">Open Times</a></li>
+    <li><a href="#location" class="nav-link transition hover:text-orange-500">Location</a></li>
+    <li><a href="#" class="px-4 md:px-6 py-2 bg-orange-500 text-white rounded-xl hover:bg-orange-600">Menu</a></li>
+  </ul>
+    <!-- Mobile Hamburger -->
+  <button id="menu-btn" class="md:hidden flex flex-col justify-between w-6 h-5 focus:outline-none">
+    <span class="block w-full h-0.5 bg-gray-700"></span>
+    <span class="block w-full h-0.5 bg-gray-700"></span>
+    <span class="block w-full h-0.5 bg-gray-700"></span>
+  </button>
+</nav>
+
+
+<!-- Mobile Sidebar from Right -->
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-md transform translate-x-full transition-transform duration-300 z-50 md:hidden">
+  <div class="flex justify-between items-center p-6 border-b">
+    <span class="font-bold text-lg text-gray-700">Menu</span>
+    <button id="close-btn" class="text-gray-700 text-2xl focus:outline-none">✖</button>
+  </div>
+  <ul class="flex flex-col p-6 gap-4 text-gray-700 font-semibold">
+    <li><a href="#aboutus" class="nav-link transition hover:text-orange-500">About Us</a></li>
+    <li><a href="#contactus" class="nav-link transition hover:text-orange-500">Contact Us</a></li>
+    <li><a href="#opentimes" class="nav-link transition hover:text-orange-500">Open Times</a></li>
+    <li><a href="#location" class="nav-link transition hover:text-orange-500">Location</a></li>
+    <li><a href="#" class="px-4 py-2 bg-orange-500 text-white rounded-xl hover:bg-orange-600">Menu</a></li>
+  </ul>
+</div>
+
+    <!-- Hero Section -->
+    <section class="w-full h-[350px] md:h-[500px] bg-cover bg-center flex items-end p-6 md:p-12" style="background-image: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.3)), url('./index-images/matt-hoffman-AYdJM-HiSUM-unsplash.jpg');">
+      <div class="flex flex-col gap-4 md:gap-6 max-w-xl">
+        <h1 id="hero-title" class="text-white text-3xl md:text-5xl font-bold"></h1>
+        <p id="hero-subtitle" class="text-white text-base md:text-lg"></p>
+        <a href="#" class="px-4 md:px-6 py-2 bg-orange-500 shadow-md hover:backdrop-blur-sm text-white rounded-xl w-fit hover:bg-orange-600 bold">Grab Your Coffee</a>
+      </div>
+    </section>
+
+    <!-- Featured -->
+    <section class="text-center my-12 md:my-20 px-4 flex flex-col items-center">
+      <p class="text-gray-600 text-base md:text-lg mb-6 md:mb-8">Featured</p>
+      <div class="flex flex-wrap justify-center gap-6 md:gap-8 md:w-[1100px] sm:w-[200px]">
+        <a href="#bakings" class="card-link block w-72 md:w-80 p-4 bg-gradient-to-b from-orange-700/60 via-orange-200/20 to-transparent ... shadow-md rounded-2xl hover:scale-105 transition">
+          <img src="./index-images/bread.jpg" class="w-full h-40 md:h-48 object-cover rounded-xl mb-4" />
+          <h3 class="text-lg md:text-xl font-semibold">Bakings</h3>
+          <p class="text-gray-600 text-sm">One bite, and you’ll know why it’s the best croissant in Amsterdam. 🥐</p>
+        </a>
+        <a href="#" class="card-link block w-72 md:w-80 p-4 bg-gradient-to-b from-orange-700/60 via-orange-200/20 to-transparent ...  shadow-md rounded-2xl hover:scale-105 transition">
+          <img src="./index-images/man.jpg" class="w-full h-40 md:h-48 object-cover rounded-xl mb-4" />
+          <h3 class="text-lg md:text-xl font-semibold">Coffee</h3>
+          <p class="text-gray-600 text-sm">Amsterdam runs on great coffee, and we serve the best. ☕</p>
+        </a>
+        <a href="#location" class="card-link block w-72 md:w-80 p-4 bg-gradient-to-b from-orange-700/60 via-orange-200/20 to-transparent ... shadow-md rounded-2xl hover:scale-105 transition">
+          <img src="./index-images/capin.jpg" class="w-full h-40 md:h-48 object-cover rounded-xl mb-4" />
+          <h3 class="text-lg md:text-xl font-semibold">Location</h3>
+          <p class="text-gray-600 text-sm">Escape the noise, embrace the calm. 🔰</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Open Times -->
+    <section id="opentimes" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+      <div class="bg-white rounded-2xl p-6 shadow-lg text-center">
+        <h2 class="text-xl md:text-2xl font-bold mb-4">Open Times</h2>
+        <table class="w-full text-left border-collapse">
+          <thead id="times-head"></thead>
+          <tbody id="times-body"></tbody>
+        </table>
+        <button id="close-opentimes" class="mt-4 px-4 py-2 bg-orange-500 text-white rounded-xl hover:bg-orange-600">Close</button>
+      </div>
+    </section>
+
+    <div  id="location" style="height: 2px; background: #000; width: 50%; margin: 0 auto; border-radius: 50%;"></div>
+
+    <!-- Location -->
+    <section class="w-11/12 md:w-4/5 mx-auto flex flex-col md:flex-row items-start gap-6 md:gap-12 my-12 md:my-20">
+      <div class="p-6 w-full md:w-1/2">
+        <h2 class="text-xl md:text-2xl font-bold mb-4">● Our Location In Amsterdam 📌</h2>
+        <p class="text-gray-700">• Come visit us in the heart of Amsterdam! Enjoy a cozy atmosphere, delightful coffee, and a place to relax or catch up with friends.</p>
+      </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38977.047797651205!2d4.848770138810935!3d52.36923254411327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c60995f0cac865%3A0xd6fdb46b4be0d6b2!2sCaf%C3%A9%20Langereis!5e0!3m2!1sen!2siq!4v1743397871328!5m2!1sen!2siq" class="w-full md:w-[600px] h-64 md:h-[260px] rounded-2xl shadow-md"></iframe>
+    </section>
+
+    <!-- Video -->
+    <section class="w-11/12 md:w-4/5 mx-auto flex flex-col md:flex-row items-start gap-6 md:gap-12 my-12 md:my-20">
+      <iframe src="https://www.youtube.com/embed/sIQID9FVxFc" class="w-full md:w-[600px] h-48 md:h-[260px] rounded-2xl shadow-md" allowfullscreen></iframe>
+      <div class="p-6 w-full md:w-1/2">
+        <h2 class="text-xl md:text-2xl font-bold mb-4">● Watch What One Night Looks Like With Us 🎸</h2>
+        <p class="text-gray-700">• Experience an unforgettable evening filled with live music, great vibes, and memories you’ll want to relive again and again.</p>
+      </div>
+    </section>
+
+    <!-- comments -->
+    <section class="py-16 px-6 text-center bg-gray-50">
+  <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-800">
+    What People Say
+  </h2>
+  <div id="testimonials" 
+       class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+    <!-- Cards will be injected here -->
+  </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="w-11/12 md:w-4/5 mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+        <div id="aboutus" class="p-4">
+          <h3 class="text-lg md:text-xl font-bold">About Cafe Langereis</h3>
+          <p class="mt-4 leading-relaxed">Welcome to Langereis, your cozy corner for handcrafted coffee, fresh pastries, and good vibes. Drop by for your daily brew!</p>
+        </div>
+        <div>
+          <h3 class="text-lg md:text-xl font-bold">Quick Links</h3>
+          <ul class="mt-4 space-y-2">
+            <li><a href="#" class="hover:text-orange-400">Home</a></li>
+            <li><a href="#" class="hover:text-orange-400">Menu</a></li>
+            <li><a href="#location" class="hover:text-orange-400">Visit Us</a></li>
+          </ul>
+        </div>
+        <div id="contactus" class="p-4">
+          <h3 class="text-lg md:text-xl font-bold">Contact Us</h3>
+          <p class="mt-4">Email: AboodMax788@gmail.com</p>
+          <p>Phone: +964 7730949424</p>
+          <p>Iraq Mosul</p>
+        </div>
+      </div>
+      <div class="text-center text-gray-400 mt-8">&copy; 2025 Abdulrahman Maher Ahmed. All rights reserved.</div>
+    </footer>
+
+    <script>
+      "use strict";
+
+      const welcome = document.getElementById("welcome");
+      const navLinks = document.querySelectorAll(".nav-link");
+      const cardLinks = document.querySelectorAll(".card-link");
+      const heroTitle = document.getElementById("hero-title");
+      const heroSubtitle = document.getElementById("hero-subtitle");
+      const openTimesSection = document.getElementById("opentimes");
+      const timesHead = document.getElementById("times-head");
+      const timesBody = document.getElementById("times-body");
+      const closeOpenTimes = document.getElementById("close-opentimes");
+
+      // Open Times Data
+      const openTimesData = new Map([
+        ["Saturday", "12 PM"],
+        ["Friday", "10 AM"],
+        ["Thursday", "10 AM"],
+        ["Wednesday", "12 PM"],
+        ["Tuesday", "10 AM"],
+        ["Monday", "9:30 AM"],
+        ["Sunday", "Closed"]
+      ]);
+
+      // Welcome Screen Hide
+      setTimeout(() => {
+        welcome.classList.add("opacity-0", "transition", "duration-1000");
+      }, 2000);
+      setTimeout(() => {
+        welcome.classList.add("hidden");
+      }, 3000);
+
+      // Nav Hover Effect
+      navLinks.forEach((link, i) => {
+        link.addEventListener("mouseover", () => {
+          navLinks.forEach((other, j) => {
+            if (j !== i) other.classList.add("opacity-50");
+          });
+        });
+        link.addEventListener("mouseout", () => {
+          navLinks.forEach(other => other.classList.remove("opacity-50"));
+        });
+      });
+
+      // Card Hover Effect
+      cardLinks.forEach((link, i) => {
+        link.addEventListener("mouseover", () => {
+          cardLinks.forEach((other, j) => {
+            if (j !== i) other.classList.add("opacity-50");
+          });
+        });
+        link.addEventListener("mouseout", () => {
+          cardLinks.forEach(other => other.classList.remove("opacity-50"));
+        });
+      });
+
+      // Typewriter Effect
+      let i = 0;
+      const titleText = "Discover The Amsterdam Coffee";
+      const subtitleText = "Explore The Best Taste In Amsterdam Streets";
+
+      setTimeout(()=>{
+        function typeWriter() {
+          if (i < titleText.length) {
+            heroTitle.textContent += titleText.charAt(i);
+          }
+          if (i < subtitleText.length) {
+            heroSubtitle.textContent += subtitleText.charAt(i);
+          }
+          i++;
+          if (i <= Math.max(titleText.length, subtitleText.length)) {
+            setTimeout(typeWriter, 100);
+          }
+        }
+        typeWriter();
+      },2000)
+
+      // Populate Open Times
+      openTimesData.forEach((time, day) => {
+        timesHead.insertAdjacentHTML("beforeend", `<th class='p-2 font-bold'>${day} : ${time}</th>`);
+      });
+
+      // Open Times Modal Toggle
+      document.querySelectorAll("a[href='#opentimes']").forEach(el => {
+        el.addEventListener("click", e => {
+          e.preventDefault();
+          openTimesSection.classList.remove("hidden");
+        });
+      });
+      closeOpenTimes.addEventListener("click", () => {
+        openTimesSection.classList.add("hidden");
+      });
+
+
+  const menuBtn = document.getElementById("menu-btn");
+  const closeBtn = document.getElementById("close-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.remove("translate-x-full");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    mobileMenu.classList.add("translate-x-full");
+  });
+
+
+  ///////
+  const contactBtn = document.getElementById('contactBtn');
+  const aboutBtn = document.getElementById('aboutBtn');
+  const contatUs = document.getElementById('contactus');
+  const aboutUs = document.getElementById('aboutus');
+
+  contactBtn.addEventListener('click', () => {
+    contatUs.classList.add('grey-bg');
+    setTimeout(()=> {
+      contatUs.classList.remove('grey-bg');
+    },1000)
+  })
+
+  aboutBtn.addEventListener('click', () => {
+    aboutUs.classList.add('grey-bg');
+    setTimeout(()=> {
+      aboutUs.classList.remove('grey-bg');
+    },1000)
+  })
+
+  ////////
+async function loadTestimonials() {
+  try {
+    const res = await fetch("comments.json");
+    const data = await res.json();
+
+    const container = document.getElementById("testimonials");
+    container.innerHTML = "";
+
+    data.forEach((item, index) => {
+      const card = document.createElement("div");
+      card.className =
+        "testimonial-card bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-6 flex flex-col items-center text-center transform transition hover:-translate-y-2 hover:shadow-2xl opacity-0";
+
+      card.style.animationDelay = `${index * 0.2}s`; // stagger effect
+
+      card.innerHTML = `
+        <img src="${item.img}" alt="${item.name}"
+             class="w-20 h-20 rounded-full object-cover border-4 border-orange-500 mb-4 shadow-md">
+        <h3 class="text-lg font-semibold text-gray-800">${item.name}</h3>
+        <p class="text-gray-600 italic mt-3">“${item.comment}”</p>
+      `;
+
+      // make fadeIn apply AFTER card is in DOM
+      setTimeout(() => {
+        card.classList.remove("opacity-0");
+      }, 50);
+
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error loading testimonials:", error);
+  }
+}
+
+loadTestimonials();
+
+    </script>
+  </body>
+</html>
